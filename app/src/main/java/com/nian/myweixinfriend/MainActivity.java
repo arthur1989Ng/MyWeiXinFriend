@@ -6,13 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FriendActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
 
     @Bind(R.id.img_back)

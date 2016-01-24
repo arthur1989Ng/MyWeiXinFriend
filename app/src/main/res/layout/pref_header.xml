@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/fillx"
+    android:background="@color/title_bg_default"
+    android:minHeight="@dimen/title_bar_min_height">
+
+
+    <LinearLayout
+        style="@style/wrap"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/header_back_selector" />
+
+        <View
+            android:id="@+id/title_left_button_line"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/img_back"
+            android:background="@color/title_line_default" />
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/title_left_button_line"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/title_friend"
+            android:textColor="@color/title_text_color"
+            android:textSize="@dimen/title_text_size" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_title_camera"
+        android:layout_width="35dp"
+        android:layout_height="35dp "
+        android:layout_centerVertical="true"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/title_img_camera" />
+
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_marginStart="38dp"-->
+    <!--android:layout_toEndOf="@+id/imageView"-->
+    <!--android:background="@mipmap/header_back_pressed" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/back"-->
+    <!--style="@style/record_item_title"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:minWidth="@dimen/button_min_size"-->
+    <!--android:minHeight="@dimen/button_min_size"-->
+    <!---->
+    <!--android:background="@drawable/setting_back"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/title_text_color" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/title"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:ellipsize="end"-->
+    <!--android:singleLine="true"-->
+    <!--android:layout_marginLeft="115dp"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:text="@string/setting"-->
+    <!--android:textColor="@color/title_text_color"-->
+    <!--android:textSize="@dimen/head_textsize" />-->
+
+    <!--<View-->
+    <!--android:id="@+id/title_left_button_line"-->
+    <!--android:layout_width="1dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:layout_toRightOf="@id/back"-->
+    <!--android:background="@color/setting_line_new"-->
+    <!--android:visibility="gone" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/title_right_button"-->
+    <!--style="@style/record_item_title"-->
+    <!--android:minWidth="@dimen/button_min_size"-->
+    <!--android:minHeight="@dimen/button_min_size"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginLeft="@dimen/record_item_margin"-->
+    <!--android:layout_marginRight="@dimen/record_item_margin"-->
+    <!--android:textColor="@color/title_text_color"-->
+    <!--android:visibility="gone" />-->
+
+    <!--<View-->
+    <!--android:id="@+id/title_right_button_line"-->
+    <!--android:layout_width="1dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_toLeftOf="@id/title_right_button"-->
+    <!--android:background="@color/setting_line_new"-->
+    <!--android:visibility="gone" />-->
+
+    <!--
+         <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_alignBottom="@id/back"
+        android:background="@color/setting_line_new" />
+    -->
+
+</FrameLayout>
