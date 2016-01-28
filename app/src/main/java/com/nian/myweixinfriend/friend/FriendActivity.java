@@ -33,7 +33,7 @@ public class FriendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend);
         ButterKnife.bind(this);
-
+        Log.d("--NG--", "TTTTTTTTT")
 
     }
 
