@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
 
-    <LinearLayout
+    <include
+        android:id="@+id/in_header"
+        layout="@layout/pref_header" />
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
+
+        <com.nian.myweixinfriend.library.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:dividerHeight="1px"
+                android:footerDividersEnabled="false"
+                tools:listitem="@layout/list_item" />
+        </com.nian.myweixinfriend.library.RefreshLayout>
+
+    </RelativeLayout>
 
 
-        <include
-            android:id="@+id/in_header"
-            layout="@layout/pref_header" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></FrameLayout>
-</FrameLayout>
+</LinearLayout>
