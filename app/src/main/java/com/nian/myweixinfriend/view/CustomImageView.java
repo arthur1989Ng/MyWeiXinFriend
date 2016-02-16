@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
-import com.nian.myweixinfriend.picasso.Picasso;
+import com.squareup.picasso.Picasso;
 
 
 public class CustomImageView extends ImageView {

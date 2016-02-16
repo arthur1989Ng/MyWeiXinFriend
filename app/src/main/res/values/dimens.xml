@@ -11,5 +11,9 @@
 
     <dimen name="dialog_text_size">14dp</dimen>
 
+    <dimen name="size_friend_name">15sp</dimen>
+    <dimen name="size_friend_content">14sp</dimen>
+    <dimen name="size_friend_time">10sp</dimen>
+
 
 </resources>
