@@ -32,6 +32,8 @@ public class MainAdapter extends BaseAdapter implements View.OnClickListener {
         this.datalist = datalist;
     }
 
+
+
     @Override
     public int getCount() {
         return datalist.size();

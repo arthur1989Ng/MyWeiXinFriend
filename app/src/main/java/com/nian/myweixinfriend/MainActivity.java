@@ -1,13 +1,17 @@
 package com.nian.myweixinfriend;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.demievil.library.RefreshLayout;
 import com.nian.myweixinfriend.adapter.MainAdapter;
@@ -38,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     ListView list;
     RefreshLayout swipeContainer;
     private View footerLayout, headLayout;
+    private TextView textMore;
+    private ProgressBar progressBar;
+    private MainAdapter mainAdapter;
 
 
     @Override
@@ -47,10 +54,19 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initData();
 
-        //使用SwipeRefreshLayout的下拉刷新监听
+
+        textMore.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadMoreData();
+            }
+        });
+
+        //使用SipeRefreshLayout的下拉刷新监听
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                refreshNewData();
 
             }
         });
@@ -61,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         swipeContainer.setOnLoadListener(new RefreshLayout.OnLoadListener() {
             @Override
             public void onLoad() {
-//                simulateLoadingData();
+                loadMoreData();
             }
         });
     }
@@ -72,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
         swipeContainer = (RefreshLayout) findViewById(R.id.swipe_container);
         headLayout = getLayoutInflater().inflate(R.layout.listview_head, null);
         footerLayout = getLayoutInflater().inflate(R.layout.listview_footer, null);
+
+        textMore = (TextView) footerLayout.findViewById(R.id.text_more);
+        progressBar = (ProgressBar) footerLayout.findViewById(R.id.load_progress_bar);
+
         list.addHeaderView(headLayout);
         list.addFooterView(footerLayout);
 
@@ -85,15 +105,64 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private void refreshNewData() {
+
+        // 刷新新的数据 耗时操作
+        swipeContainer.setRefreshing(false);
+
+
+    }
+
+
+    private void loadMoreData() {
+        textMore.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                testOne();
+                swipeContainer.setLoading(false);
+                mainAdapter.notifyDataSetChanged();
+                textMore.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(MainActivity.this, "Refresh Finished!", Toast.LENGTH_SHORT).show();
+            }
+        }, 2000);
+
+
+    }
+
+
+    private void initData() {
+
+
+        imagesList = new ArrayList<>();
+        //这里单独添加一条单条的测试数据，用来测试单张的时候横竖图片的效果
+        ArrayList<ImageModel> singleList = new ArrayList<>();
+        singleList.add(new ImageModel(images[8][0], Integer.parseInt(images[8][1]), Integer.parseInt(images[8][2])));
+        imagesList.add(singleList);
+        //从一到9生成9条朋友圈内容，分别是1~9张图片
+        for (int i = 0; i < 3; i++) {
+            ArrayList<ImageModel> itemList = new ArrayList<>();
+            for (int j = 0; j <= i; j++) {
+                itemList.add(new ImageModel(images[j][0], Integer.parseInt(images[j][1]), Integer.parseInt(images[j][2])));
+            }
+            imagesList.add(itemList);
+        }
+        mainAdapter = new MainAdapter(this, imagesList);
+        list.setAdapter(mainAdapter);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
     }
 
-    private void initData() {
-        imagesList = new ArrayList<>();
-        //这里单独添加一条单条的测试数据，用来测试单张的时候横竖图片的效果
+
+    private void testOne() {
         ArrayList<ImageModel> singleList = new ArrayList<>();
         singleList.add(new ImageModel(images[8][0], Integer.parseInt(images[8][1]), Integer.parseInt(images[8][2])));
         imagesList.add(singleList);
@@ -105,7 +174,5 @@ public class MainActivity extends AppCompatActivity {
             }
             imagesList.add(itemList);
         }
-        list.setAdapter(new MainAdapter(this, imagesList));
     }
-
 }
