@@ -11,10 +11,11 @@ public class UserModel extends BaseModel {
     private String name;
     private String headUrl;
 
-    public UserModel() {
-        // TODO Auto-generated constructor stub
+    public UserModel(String id, String name, String headUrl) {
+        this.id = id;
+        this.name = name;
+        this.headUrl = headUrl;
     }
-
 
     public UserModel(Parcel in) {
 

@@ -1,8 +1,10 @@
 package com.nian.myweixinfriend.model;
 
-import com.nian.myweixinfriend.utils.L;
 
-public class ImageModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ImageModel extends BaseModel {
     private String url;
     private int width;
     private int height;
@@ -11,7 +13,14 @@ public class ImageModel {
         this.url = url;
         this.width = width;
         this.height = height;
-        L.i(toString());
+    }
+
+
+    public ImageModel(Parcel in) {
+
+        url = in.readString();
+        width = in.readInt();
+        height = in.readInt();
     }
 
     public String getUrl() {
@@ -39,8 +48,25 @@ public class ImageModel {
     }
 
     @Override
-    public String toString() {
-
-        return "image---->>url=" + url + "width=" + width + "height" + height;
+    public int describeContents() {
+        return 0;
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(url);
+        dest.writeInt(width);
+        dest.writeInt(height);
+    }
+
+
+    public final static Parcelable.Creator<ImageModel> CREATOR = new Parcelable.Creator<ImageModel>() {
+        public ImageModel createFromParcel(Parcel source) {
+            return new ImageModel(source);
+        }
+
+        public ImageModel[] newArray(int size) {
+            return new ImageModel[size];
+        }
+    };
 }

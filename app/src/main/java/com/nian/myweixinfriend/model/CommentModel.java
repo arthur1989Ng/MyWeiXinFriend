@@ -67,7 +67,6 @@ public class CommentModel extends BaseModel {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
-
         dest.writeString(id);
         dest.writeParcelable(user, flags);
         dest.writeParcelable(toReplyUser, flags);

@@ -32,8 +32,6 @@ public class MainAdapter extends BaseAdapter implements View.OnClickListener {
         this.datalist = datalist;
     }
 
-
-
     @Override
     public int getCount() {
         return datalist.size();
@@ -60,7 +58,7 @@ public class MainAdapter extends BaseAdapter implements View.OnClickListener {
             viewHolder.imgFriendHead = (ImageView) convertView.findViewById(R.id.img_friend_head);
             viewHolder.imgCommit = (ImageView) convertView.findViewById(R.id.img_commit);
             viewHolder.tvTime = (TextView) convertView.findViewById(R.id.tv_time);
-            viewHolder.nineGridLayout = (NineGridlayout) convertView.findViewById(R.id.nine_grid_layout);
+//            viewHolder.nineGridLayout = (NineGridlayout) convertView.findViewById(R.id.nine_grid_layout);
 
 
             convertView.setTag(viewHolder);

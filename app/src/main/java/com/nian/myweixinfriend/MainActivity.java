@@ -14,26 +14,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.demievil.library.RefreshLayout;
-import com.nian.myweixinfriend.adapter.MainAdapter;
+import com.nian.myweixinfriend.adapter.FriendsAdapter;
+import com.nian.myweixinfriend.model.FavoriteModel;
+import com.nian.myweixinfriend.model.FriendCircleModel;
 import com.nian.myweixinfriend.model.ImageModel;
+import com.nian.myweixinfriend.utils.DatasUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private String[][] images = new String[][]{
-            {"file:///android_asset/img2.jpg", "250", "250"}
-            , {"http://img3.douban.com/view/photo/photo/public/p2249526036.jpg", "640", "960"}
-            , {"file:///android_asset/img3.jpg", "250", "250"}
-            , {"file:///android_asset/img4.jpg", "250", "250"}
-            , {"file:///android_asset/img5.jpg", "250", "250"}
-            , {"file:///android_asset/img6.jpg", "250", "250"}
-            , {"file:///android_asset/img7.jpg", "250", "250"}
-            , {"file:///android_asset/img8.jpg", "250", "250"}
-            , {"http://img4.douban.com/view/photo/photo/public/p2252689992.jpg", "1280", "800"}
-    };
-    private List<ArrayList<ImageModel>> imagesList;
+    private ArrayList<FriendCircleModel> imagesList;
 
     ImageView imgBack;
     View titleLeftButtonLine;
@@ -44,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private View footerLayout, headLayout;
     private TextView textMore;
     private ProgressBar progressBar;
-    private MainAdapter mainAdapter;
+    private FriendsAdapter mainAdapter;
+    private ArrayList<FriendCircleModel> datas;
 
 
     @Override
@@ -55,31 +48,6 @@ public class MainActivity extends AppCompatActivity {
         initData();
 
 
-        textMore.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadMoreData();
-            }
-        });
-
-        //使用SipeRefreshLayout的下拉刷新监听
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshNewData();
-
-            }
-        });
-
-
-        //使用自定义的RefreshLayout加载更多监听
-        //use customed RefreshLayout OnLoadListener
-        swipeContainer.setOnLoadListener(new RefreshLayout.OnLoadListener() {
-            @Override
-            public void onLoad() {
-                loadMoreData();
-            }
-        });
     }
 
 
@@ -137,42 +105,42 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
 
-
-        imagesList = new ArrayList<>();
-        //这里单独添加一条单条的测试数据，用来测试单张的时候横竖图片的效果
-        ArrayList<ImageModel> singleList = new ArrayList<>();
-        singleList.add(new ImageModel(images[8][0], Integer.parseInt(images[8][1]), Integer.parseInt(images[8][2])));
-        imagesList.add(singleList);
-        //从一到9生成9条朋友圈内容，分别是1~9张图片
-        for (int i = 0; i < 3; i++) {
-            ArrayList<ImageModel> itemList = new ArrayList<>();
-            for (int j = 0; j <= i; j++) {
-                itemList.add(new ImageModel(images[j][0], Integer.parseInt(images[j][1]), Integer.parseInt(images[j][2])));
-            }
-            imagesList.add(itemList);
-        }
-        mainAdapter = new MainAdapter(this, imagesList);
+        datas = DatasUtil.createCircleDatas();
+        mainAdapter = new FriendsAdapter(this);
+        mainAdapter.setDatas(datas);
         list.setAdapter(mainAdapter);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
 
 
-    private void testOne() {
-        ArrayList<ImageModel> singleList = new ArrayList<>();
-        singleList.add(new ImageModel(images[8][0], Integer.parseInt(images[8][1]), Integer.parseInt(images[8][2])));
-        imagesList.add(singleList);
-        //从一到9生成9条朋友圈内容，分别是1~9张图片
-        for (int i = 0; i < 9; i++) {
-            ArrayList<ImageModel> itemList = new ArrayList<>();
-            for (int j = 0; j <= i; j++) {
-                itemList.add(new ImageModel(images[j][0], Integer.parseInt(images[j][1]), Integer.parseInt(images[j][2])));
+        textMore.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                loadMoreData();
             }
-            imagesList.add(itemList);
-        }
+        });
+
+        //使用SipeRefreshLayout的下拉刷新监听
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+//                refreshNewData();
+
+            }
+        });
+
+
+        //使用自定义的RefreshLayout加载更多监听
+        //use customed RefreshLayout OnLoadListener
+        swipeContainer.setOnLoadListener(new RefreshLayout.OnLoadListener() {
+            @Override
+            public void onLoad() {
+                loadMoreData();
+            }
+        });
     }
+
+
+    public void testOne() {
+        datas = DatasUtil.createCircleDatas();
+    }
+
 }

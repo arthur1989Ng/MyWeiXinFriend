@@ -7,9 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -41,15 +41,11 @@
                 android:text="今天天气真好，好开心！！！！！！！！！！！！！！！！！"
                 android:textSize="@dimen/size_friend_content" />
 
-
-            <com.w4lle.library.NineGridlayout
-                android:id="@+id/nine_grid_layout"
+            <!-- 不同的地方 -->
+            <ViewStub
+                android:id="@+id/view_stub_link_or_img"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:paddingRight="20dp"
-                />
-
+                android:layout_height="wrap_content" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -59,16 +55,17 @@
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:text="3分钟前"
-                    android:textSize="@dimen/size_friend_time" />
+                    android:textSize="@dimen/size_friend_time"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true" />
 
                 <ImageView
                     android:id="@+id/img_commit"
                     android:layout_width="30dp"
                     android:layout_height="20dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="8dp"
+
                     android:background="@mipmap/comment_ic" />
 
             </RelativeLayout>

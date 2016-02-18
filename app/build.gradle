@@ -25,6 +25,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     /* compile 'com.demievil.library:refreshlayout:1.0.0@aar'*/
-    compile project(':NineLayout')
     compile project(':refreshlayout')
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile project(':NineLayout')
 }

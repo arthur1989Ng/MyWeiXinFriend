@@ -13,7 +13,7 @@ public class FriendCircleModel extends BaseModel {
     private String id;
     private String content;
     private String createTime;
-    private String type;  //1:链接  2:图片
+    private int type;  //1:链接  2:图片
     private String linkImg;
     private String linkTitle;
     private List<String> photos;
@@ -29,7 +29,7 @@ public class FriendCircleModel extends BaseModel {
         id = in.readString();
         content = in.readString();
         createTime = in.readString();
-        type = in.readString();
+        type = in.readInt();
         linkImg = in.readString();
         linkTitle = in.readString();
         photos = in.createStringArrayList();
@@ -103,11 +103,11 @@ public class FriendCircleModel extends BaseModel {
         this.photos = photos;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -129,7 +129,7 @@ public class FriendCircleModel extends BaseModel {
         dest.writeString(id);
         dest.writeString(content);
         dest.writeString(createTime);
-        dest.writeString(type);
+        dest.writeInt(type);
         dest.writeString(linkImg);
         dest.writeString(linkTitle);
         dest.writeStringList(photos);
